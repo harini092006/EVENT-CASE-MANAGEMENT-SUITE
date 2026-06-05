@@ -262,4 +262,4 @@ Deep learning-based forecasting.
 Dashboard implementation.
 Mobile application support.
 Automated report generation.
-Multi-store sales forecasting.
+Multi-store sales forecasting..
