@@ -86,27 +86,17 @@ This module presents results in graphical and report formats.
 Features Sales trend charts. Forecast comparison graphs. Report generation. Downloadable outputs. 6. System Workflow Dataset Upload Data Cleaning and Preprocessing Exploratory Data Analysis Feature Engineering Model Training Model Evaluation Sales Forecast Generation Result Visualization Report Generation 7. Benefits of the System Improves forecasting accuracy. Supports data-driven decision-making. Reduces inventory costs. Enhances customer satisfaction. Saves time and resources. Identifies future market trends. Increases business profitability. 8. Future Enhancements Real-time sales prediction. Integration with cloud platforms. Deep learning-based forecasting. Dashboard implementation. Mobile application support. Automated report generation. Multi-store sales forecasting.
  
  UML Documentation
-
-## Unified Modeling Language (UML)
-
+ Unified Modeling Language (UML)
 Unified Modeling Language (UML) is a standardized visual modeling language used to analyze, design, and document software systems. UML helps developers, designers, and stakeholders understand the structure and behavior of a system through graphical representations.
 
-### Purpose of UML in Event Registration Portal
-
+ Purpose of UML in Event Registration Portal
 The UML diagrams for the Event Registration Portal provide a visual representation of system functionalities, user interactions, workflow processes, and system architecture. These diagrams assist in requirement analysis, system design, development, testing, and maintenance.
 
----
-
-## 1. Use Case Diagram
-
-### Description
-
+ 1. Use Case Diagram
+ Description
 The Use Case Diagram illustrates the interaction between users and the Event Registration Portal system.
-
-### Actors
-
-#### User
-
+ Actors
+ User
 * Register Account
 * Login
 * View Events
@@ -117,7 +107,6 @@ The Use Case Diagram illustrates the interaction between users and the Event Reg
 * Logout
 
 Admin
-
 * Login
 * Create Event
 * Update Event
@@ -128,57 +117,42 @@ Admin
 * Monitor Event Capacity
 * Logout
 
-### Purpose
-
+Purpose
 * Identifies system functionalities.
 * Shows interaction between users and the system.
 * Helps gather functional requirements.
 
----
-
  2. Class Diagram
-
  Description
-
 The Class Diagram represents the static structure of the Event Registration Portal.
-
  Classes
-
 User
-
 Attributes:
-
 * userID
 * name
 * email
 * password
 
 Methods:
-
 * register()
 * login()
 * searchEvents()
 * registerEvent()
 
  Admin
-
 Attributes:
-
 * adminID
 * username
 * password
 
 Methods:
-
 * createEvent()
 * updateEvent()
 * deleteEvent()
 * manageParticipants()
 
  Event
-
 Attributes:
-
 * eventID
 * eventName
 * description
@@ -187,45 +161,34 @@ Attributes:
 * capacity
 
 Methods:
-
 * createEvent()
 * updateEvent()
 * deleteEvent()
 
  Registration
-
 Attributes:
-
 * registrationID
 * registrationDate
 * status
 
 Methods:
-
 * confirmRegistration()
 * cancelRegistration()
 
  Relationships
-
 * User registers for Event.
 * Registration links User and Event.
 * Admin manages Event.
 * Admin monitors Registrations.
 
  Purpose
-
 * Defines system entities and their relationships.
 * Serves as the blueprint for database and software design.
 
-
 3. Sequence Diagram
-
-### Description
-
+ Description
 The Sequence Diagram illustrates the chronological interaction between system components during event registration.
-
 Workflow
-
 1. User logs into the portal.
 2. System validates credentials.
 3. User views available events.
@@ -238,21 +201,15 @@ Workflow
 10. Admin monitors registration information.
 
 Purpose
-
 * Visualizes message flow between system components.
 * Helps understand process execution order.
 
-
-## 4. Activity Diagram
-
+ 4. Activity Diagram
  Description
-
 The Activity Diagram represents the workflow involved in event registration.
 
-### Process Flow
-
-Start
-
+ Process Flow
+Start:
 → User Registration/Login
 
 → Browse Events
@@ -268,17 +225,14 @@ Start
 → Validate Information
 
 Decision:
-
 * If Valid → Store Registration → Send Confirmation → End
 * If Invalid → Display Error Message → Return to Registration Form
 
 Purpose
-
 * Represents business process flow.
 * Helps identify decision points and process logic.
 
  Benefits of UML Documentation
-
 * Improves system understanding.
 * Simplifies communication among team members.
 * Assists in system design and implementation.
@@ -288,3 +242,88 @@ Purpose
 
 The UML diagrams used in this project follow standards established by the Object Management Group (OMG) and recognized by the International Organization for Standardization (ISO). Standard UML notation ensures consistency, clarity, and maintainability throughout the software development lifecycle.
 
+
+
+
+Data Requirement Analysis:
+Event Registration Portal
+1. Overview
+Data Requirement Analysis focuses on identifying the type of data required to manage event registrations efficiently. It ensures that all participant, event, and transaction-related information is properly structured, stored, and processed within the system.
+
+2. Types of Data Required
+The system handles the following categories of data:
+a) Participant Data
+Participant ID (Unique Identifier)
+Full Name
+Email Address
+Phone Number
+Organization / College Name
+Gender (Optional)
+b) Event Data
+Event ID
+Event Name
+Description
+Date & Time
+Venue / Platform (Online/Offline)
+Registration Deadline
+Maximum Participants
+c) Registration Data
+Registration ID
+Participant ID
+Event ID
+Registration Date
+Status (Registered / Cancelled / Attended)
+d) Payment Data (Optional)
+Payment ID
+Participant ID
+Event ID
+Amount Paid
+Payment Status (Success / Pending / Failed)
+Payment Method
+e) User/Admin Data
+Admin ID
+Username
+Password
+Role (Admin / Organizer)
+
+3. Data Sources
+The data is collected from:
+User registration forms (participants)
+Admin inputs (event creation and updates)
+System-generated data (registration records)
+Payment gateway (if integrated)
+
+4. Data Storage Requirements
+Data should be stored in a structured database (tables)
+Each entity must have a unique ID
+Relationships must be maintained (Participant ↔ Event ↔ Registration)
+Data should support fast access and updates
+
+5. Data Processing Requirements
+The system should support:
+Creating and managing event details
+Registering participants for events
+Updating or cancelling registrations
+Searching and filtering events or participants
+Generating participant lists and reports
+
+6. Data Integrity & Validation
+To maintain data accuracy:
+Mandatory fields (name, email, event selection) must not be empty
+Unique constraints for IDs
+Email format validation
+Avoid duplicate registrations for the same event
+Ensure correct mapping between participant and event
+
+7. Data Security Requirements
+Role-based access control (Admin / Organizer)
+Secure handling of user credentials
+Protection of personal participant data
+Secure payment processing (if applicable)
+Backup and recovery support
+
+8. Data Relationships
+One participant can register for multiple events
+One event can have multiple participants
+Registration acts as a linking entity between participant and event
+Payment (if included) is linked to registration
