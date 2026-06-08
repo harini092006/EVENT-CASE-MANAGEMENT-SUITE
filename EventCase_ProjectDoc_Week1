@@ -1,1 +1,212 @@
+EventCase Management Suite
+Project Documentation & Development Log
+
+ 
+
+Phase 1: Planning & Requirements
+June 1 – June 8, 2025
+
+ 
+1. Project Overview:
+
+1.1 Project Title
+EventCase Management Suite
+1.2 Project Description
+EventCase Management Suite is a comprehensive web-based platform designed to streamline the end-to-end lifecycle of events — from creation and planning to ticketing, attendee management, feedback collection, and post-event analytics. The system targets event organizers, venue administrators, attendees, and system administrators through a role-based, secure, and scalable architecture.
+1.3 Project Objectives
+•	Provide a centralized platform for creating, managing, and publishing events
+•	Enable seamless ticket booking, payment processing, and QR-code-based check-in
+•	Facilitate attendee registration with profile and preference management
+•	Offer session scheduling and speaker management for multi-track events
+•	Collect and analyze post-event feedback to improve future events
+•	Generate real-time reports and dashboards for organizers and administrators
+•	Send automated notifications (email/SMS) for event updates and reminders
+1.4 Technology Stack (Proposed)
+Layer	Technology
+Frontend	React.js / HTML5 / Tailwind CSS
+Backend	Node.js with Express.js / Python Django
+Database	MySQL / PostgreSQL
+Authentication	JWT (JSON Web Tokens) + bcrypt
+Payment Gateway	Razorpay / Stripe
+Notifications	Nodemailer (Email) + Twilio (SMS)
+Hosting	AWS / Heroku / Vercel
+Version Control	Git + GitHub
+ 
+2. Day-by-Day Development Log:
+
+
+Day 1  |  June 1, 2025  |  Project Title Finalization & Kickoff
+
+Activities Completed:
+#	Task	Details / Output	Status
+1	Project Title Finalization	Decided on 'EventCase Management Suite' as the official project name	Completed
+2	Scope Definition	Defined the broad scope: event creation, ticketing, attendee mgmt, feedback, analytics	Completed
+3	Team Role Assignment	Assigned roles: Project Lead, Backend Dev, Frontend Dev, DB Admin, Tester	Completed
+4	Tool Setup	Set up GitHub repository, created project board, configured VS Code workspace	Completed
+5	README Initialization	Created initial README.md with project title and placeholder sections	Completed
+
+Day 2  |  June 2, 2025  |  Requirement Gathering & Objective Definition
+
+Functional Requirements Gathered:
+•	User Registration, Login, and Role Management (Admin, Organizer, Attendee)
+•	Event creation with title, description, date/time, venue, category, and capacity
+•	Online ticket booking with multiple ticket types (VIP, General, Student)
+•	Secure payment processing with confirmation receipts
+•	QR code generation for each booked ticket
+•	Session/Schedule management for multi-track events
+•	Email and SMS notification system
+•	Feedback and rating submission after events
+•	Admin dashboard with analytics and reports
+
+Non-Functional Requirements:
+•	Performance: Page load under 3 seconds for 1000 concurrent users
+•	Security: HTTPS, password hashing, SQL injection prevention
+•	Scalability: Modular architecture to support future feature additions
+•	Usability: Mobile-responsive UI, WCAG accessibility compliance
+•	Availability: 99.5% uptime SLA
+
+Day 3  |  June 3, 2025  |  User Role Identification & Actor Definition
+
+Identified User Roles / Actors:
+Role/Actor	Description	Key Permissions
+System Admin	Full system access; manages users, events, and platform configuration	All CRUD, user banning, analytics, system settings
+Event Organizer	Creates and manages events, sessions, venues, and views reports	Create/Edit/Delete Events, manage sessions, view ticket sales
+Attendee / User	Registers, browses events, books tickets, and submits feedback	Browse, book tickets, view bookings, submit feedback
+Guest (Unregistered)	Can browse public events and view details without booking	View events only
+Venue Manager	Manages venue availability and coordinates with organizers	Edit venue details, confirm event bookings
+
+Day 4  |  June 4, 2025  |  Use Case Diagram Preparation
+
+Use Cases Identified:
+The following use cases were documented for the EventCase Management Suite:
+
+Actor: Attendee
+•	UC-01: Register / Sign Up
+•	UC-02: Login / Logout
+•	UC-03: Browse Events (by category, date, location)
+•	UC-04: View Event Details
+•	UC-05: Book Ticket (select type, quantity, proceed to payment)
+•	UC-06: Make Payment
+•	UC-07: Download / View Ticket (QR Code)
+•	UC-08: Submit Feedback & Rating
+•	UC-09: View Booking History
+•	UC-10: Update Profile
+
+Actor: Event Organizer
+•	UC-11: Create New Event
+•	UC-12: Edit / Cancel Event
+•	UC-13: Add Sessions and Speakers
+•	UC-14: Set Ticket Types and Pricing
+•	UC-15: View Ticket Sales Dashboard
+•	UC-16: Send Notifications to Attendees
+•	UC-17: View Feedback Reports
+
+Actor: System Administrator
+•	UC-18: Manage User Accounts (activate, suspend, delete)
+•	UC-19: Manage Event Categories
+•	UC-20: View Platform-wide Analytics
+•	UC-21: Configure System Settings
+
+Use Case Diagram (Text Representation):
+[ EventCase Management Suite — Use Case Diagram ]
+ 
+  <<Actor>>          <<System Boundary: EventCase>>
+  [Attendee]  ──────► (Register / Login)
+              ──────► (Browse & View Events)
+              ──────► (Book Ticket) ──► <<include>> (Make Payment)
+              ──────► (Download Ticket with QR Code)
+              ──────► (Submit Feedback)
+ 
+  [Organizer] ──────► (Create / Manage Event)
+              ──────► (Add Sessions & Speakers)
+              ──────► (Set Ticket Types & Pricing)
+              ──────► (View Sales Dashboard)
+              ──────► (Send Notifications)
+ 
+  [Admin]     ──────► (Manage Users)
+              ──────► (Manage Categories)
+              ──────► (View Platform Analytics)
+              ──────► (System Configuration)
+ 
+Day 5  |  June 5, 2025  |  Data-Based Requirement Analysis
+
+Data Requirements Analysis:
+Based on all gathered requirements, the following data entities and their attributes were analyzed:
+
+#	Task	Details / Output	Status
+1	User Data Analysis	Identify user attributes: name, email, phone, role, preferences, login history	Completed
+2	Event Data Analysis	Define event fields: title, desc, category, venue, dates, capacity, organizer	Completed
+3	Ticket Data Analysis	Ticket types, pricing tiers, QR code logic, booking status lifecycle	Completed
+4	Payment Data Analysis	Payment method, transaction ID, status, refund policy handling	Completed
+5	Feedback Data Analysis	Rating scale (1-5), comment, timestamp, linkage to event and user	Completed
+6	Notification Data	Notification types: booking confirm, event reminder, cancellation alert	Completed
+
+Day 6  |  June 6, 2025  |  ER Diagram Design
+
+Entity-Relationship Diagram — Entities and Attributes:
+The following ER diagram entities were identified and designed for the EventCase Management Suite database:
+
+Entity	Primary Key	Attributes	Relationships
+User	user_id (PK)	name, email, password_hash, role, phone, created_at	Creates Events, Books Tickets, Submits Feedback
+Event	event_id (PK)	title, description, category, start_date, end_date, venue_id (FK), organizer_id (FK), status, capacity, created_at	Has Venue, Has Sessions, Has Tickets, Has Feedback
+Venue	venue_id (PK)	name, address, city, state, pincode, capacity, contact_phone	Hosts many Events
+Session	session_id (PK)	event_id (FK), title, start_time, end_time, speaker_name, room	Belongs to Event
+Ticket	ticket_id (PK)	event_id (FK), user_id (FK), ticket_type, price, booking_date, status, qr_code	Belongs to User and Event
+Payment	payment_id (PK)	ticket_id (FK), amount, payment_date, method, status, transaction_id	Linked to Ticket
+Feedback	feedback_id (PK)	event_id (FK), user_id (FK), rating (1-5), comment, submitted_at	Belongs to User and Event
+Category	category_id (PK)	name, description, icon	Classifies Events
+Notification	notif_id (PK)	user_id (FK), message, type, is_read, created_at	Sent to User
+
+Key Relationships:
+•	User (1) ──< Books >── (M) Ticket: One user can book many tickets
+•	Event (1) ──< Has >── (M) Ticket: One event can have many tickets booked
+•	Event (1) ──< Has >── (M) Session: One event can have multiple sessions
+•	Venue (1) ──< Hosts >── (M) Event: One venue can host many events
+•	User (1) ──< Submits >── (M) Feedback: One user can give feedback for multiple events
+•	Ticket (1) ──< Generates >── (1) Payment: Each ticket booking has one payment record
+•	Category (1) ──< Classifies >── (M) Event: One category can have many events
+•	User (1) ──< Receives >── (M) Notification: User receives multiple notifications
+ 
+Day 7  |  June 7, 2025  |  Database Schema & Normalization
+
+Normalized Table Definitions (3NF):
+
+users table:
+Column	Data Type	Constraint	Description
+user_id	INT	PRIMARY KEY, AUTO_INCREMENT	Unique user identifier
+name	VARCHAR(100)	NOT NULL	Full name of user
+email	VARCHAR(150)	UNIQUE, NOT NULL	Login email address
+password_hash	VARCHAR(255)	NOT NULL	Bcrypt hashed password
+role	ENUM	NOT NULL	admin / organizer / attendee
+phone	VARCHAR(15)		Contact number
+created_at	TIMESTAMP	DEFAULT NOW()	Account creation time
+
+events table:
+Column	Data Type	Constraint	Description
+event_id	INT	PRIMARY KEY, AUTO_INCREMENT	Unique event identifier
+title	VARCHAR(200)	NOT NULL	Event title
+description	TEXT		Full event description
+category_id	INT	FK → categories	Event category
+venue_id	INT	FK → venues	Venue of the event
+organizer_id	INT	FK → users	Organizer (user) who created it
+start_date	DATETIME	NOT NULL	Event start date and time
+end_date	DATETIME	NOT NULL	Event end date and time
+capacity	INT	NOT NULL	Maximum attendees allowed
+status	ENUM	NOT NULL	draft / published / cancelled / completed
+ 
+Day 8  |  June 8, 2025  |  Review, Documentation & GitHub Upload
+
+Today's Tasks:
+Task	Details / Output	Status
+1	Review All Week's Work	Cross-check requirements, ER diagram, and schema for consistency	In Progress
+2	Finalize Project Documentation	Compile all documents into this master document for GitHub upload	In Progress
+3	Upload to GitHub	Push this document + README update to the project repository	In Progress
+4	Update README.md	Add links to documentation, ER diagram section, and progress summary	In Progress
+5	Team Meeting / Demo	Present Week 1 progress to mentor/team with this document as reference	In Progress
+
+
+
+
+ 
+
 
