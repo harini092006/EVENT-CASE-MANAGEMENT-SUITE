@@ -1,1 +1,108 @@
+ UML Class Diagram – Event Case Management Suite
 
+```text
++----------------------+
+|        User          |
++----------------------+
+| userId               |
+| name                 |
+| email                |
+| phone                |
+| password             |
++----------------------+
+| createCase()         |
+| viewCase()           |
+| updateProfile()      |
++----------------------+
+
+            |
+            | creates
+            |
+            v
+
++----------------------+
+|        Case          |
++----------------------+
+| caseId               |
+| title                |
+| description          |
+| priority             |
+| status               |
+| createdDate          |
++----------------------+
+| createCase()         |
+| updateCase()         |
+| closeCase()          |
++----------------------+
+
+            |
+            | related to
+            |
+            v
+
++----------------------+
+|        Event         |
++----------------------+
+| eventId              |
+| eventName            |
+| eventDate            |
+| venue                |
+| description          |
++----------------------+
+| createEvent()        |
+| updateEvent()        |
+| deleteEvent()        |
++----------------------+
+
+            ^
+            |
+            | manages
+            |
++----------------------+
+|        Admin         |
++----------------------+
+| adminId              |
+| name                 |
+| email                |
+| password             |
++----------------------+
+| manageEvents()       |
+| assignStaff()        |
+| viewReports()        |
++----------------------+
+
+            |
+            | assigns
+            |
+            v
+
++----------------------+
+|        Staff         |
++----------------------+
+| staffId              |
+| name                 |
+| email                |
+| role                 |
+| phone                |
++----------------------+
+| handleCase()         |
+| updateStatus()       |
++----------------------+
+
+            |
+            | updates
+            |
+            v
+
++----------------------+
+|     CaseUpdate       |
++----------------------+
+| updateId             |
+| updateDate           |
+| remarks              |
+| status               |
++----------------------+
+| addUpdate()          |
+| viewHistory()        |
++----------------------+
+```
