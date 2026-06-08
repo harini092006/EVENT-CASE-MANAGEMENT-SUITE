@@ -1,1 +1,69 @@
+-- Create Database
+CREATE DATABASE EventCaseManagement;
+USE EventCaseManagement;
 
+-- Users Table
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('Admin', 'Organizer', 'Participant') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Events Table
+CREATE TABLE Events (
+    event_id INT PRIMARY KEY AUTO_INCREMENT,
+    event_name VARCHAR(150) NOT NULL,
+    description TEXT,
+    event_date DATE NOT NULL,
+    venue VARCHAR(200),
+    organizer_id INT,
+    FOREIGN KEY (organizer_id) REFERENCES Users(user_id)
+);
+
+-- Cases Table
+CREATE TABLE Cases (
+    case_id INT PRIMARY KEY AUTO_INCREMENT,
+    event_id INT NOT NULL,
+    case_title VARCHAR(150) NOT NULL,
+    case_description TEXT,
+    priority ENUM('Low', 'Medium', 'High') DEFAULT 'Medium',
+    status ENUM('Open', 'In Progress', 'Resolved', 'Closed') DEFAULT 'Open',
+    assigned_to INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (event_id) REFERENCES Events(event_id),
+    FOREIGN KEY (assigned_to) REFERENCES Users(user_id)
+);
+
+-- Registrations Table
+CREATE TABLE Registrations (
+    registration_id INT PRIMARY KEY AUTO_INCREMENT,
+    event_id INT NOT NULL,
+    participant_id INT NOT NULL,
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (event_id) REFERENCES Events(event_id),
+    FOREIGN KEY (participant_id) REFERENCES Users(user_id)
+);
+
+-- Feedback Table
+CREATE TABLE Feedback (
+    feedback_id INT PRIMARY KEY AUTO_INCREMENT,
+    event_id INT NOT NULL,
+    participant_id INT NOT NULL,
+    rating INT CHECK (rating BETWEEN 1 AND 5),
+    comments TEXT,
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (event_id) REFERENCES Events(event_id),
+    FOREIGN KEY (participant_id) REFERENCES Users(user_id)
+);
+
+-- Notifications Table
+CREATE TABLE Notifications (
+    notification_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    message TEXT NOT NULL,
+    sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
