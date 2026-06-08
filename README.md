@@ -1,7 +1,7 @@
-Student Case Management System
+Student Case Management Suite
 Project Overview
 
-The Student Ease Management System is a web-based application developed to simplify and automate various student-related academic and administrative activities. The system provides a centralized platform where students, faculty members, and administrators can efficiently manage academic records, attendance, assignments, course information, and communication.
+The Student Ease Management Suite is a web-based application developed to simplify and automate various student-related academic and administrative activities. The system provides a centralized platform where students, faculty members, and administrators can efficiently manage academic records, attendance, assignments, course information, and communication.
 
 The primary objective of this project is to reduce manual paperwork, improve data accuracy, and provide quick access to student information. The system enhances academic management by offering real-time updates and seamless interaction between students and educational institutions.
 
