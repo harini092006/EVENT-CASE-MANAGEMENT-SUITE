@@ -1,1 +1,91 @@
+ ER Diagram – Event Case Management Suite
 
+```text
++----------------------+
+|        USER          |
++----------------------+
+| user_id (PK)         |
+| name                 |
+| email                |
+| phone                |
+| password             |
++----------------------+
+           |
+           | Creates
+           | 1:M
+           v
+
++----------------------+
+|         CASE         |
++----------------------+
+| case_id (PK)         |
+| user_id (FK)         |
+| event_id (FK)        |
+| title                |
+| description          |
+| priority             |
+| status               |
+| created_date         |
++----------------------+
+           ^
+           |
+           | Related To
+           | M:1
+           |
++----------------------+
+|        EVENT         |
++----------------------+
+| event_id (PK)        |
+| event_name           |
+| event_date           |
+| venue                |
+| description          |
++----------------------+
+           ^
+           |
+           | Managed By
+           | M:1
+           |
++----------------------+
+|        ADMIN         |
++----------------------+
+| admin_id (PK)        |
+| name                 |
+| email                |
+| password             |
++----------------------+
+
+           |
+           | Assigns
+           | 1:M
+           v
+
++----------------------+
+|      STAFF           |
++----------------------+
+| staff_id (PK)        |
+| name                 |
+| email                |
+| role                 |
+| phone                |
++----------------------+
+
+           ^
+           |
+           | Handles
+           | 1:M
+           |
++----------------------+
+|    CASE_UPDATE       |
++----------------------+
+| update_id (PK)       |
+| case_id (FK)         |
+| staff_id (FK)        |
+| update_date          |
+| remarks              |
+| status               |
++----------------------+
+
+PK = Primary Key
+FK = Foreign Key
+```
