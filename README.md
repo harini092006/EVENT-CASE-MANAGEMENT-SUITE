@@ -1,4 +1,4 @@
-Student Ease Management System
+Student Case Management System
 Project Overview
 
 The Student Ease Management System is a web-based application developed to simplify and automate various student-related academic and administrative activities. The system provides a centralized platform where students, faculty members, and administrators can efficiently manage academic records, attendance, assignments, course information, and communication.
